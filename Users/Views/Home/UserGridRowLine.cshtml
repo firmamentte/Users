@@ -1,0 +1,21 @@
+﻿@model List<Users.Models.UserGridModel>
+
+@if ((Model != null) && (Model.Any()))
+{
+    foreach (var item in Model.OrderBy(item => item.Name).ThenBy(item => item.Surname))
+    {
+        <div class="gv-row-line">
+            <span class="gv-value">@item.UserId</span>
+            <label class="gv-separator">|</label>
+            <span class="gv-value">@item.Name</span>
+            <span class="gv-value">@item.Surname</span>
+            <label class="gv-separator">|</label>
+            <span class="gv-value">@item.CellPhoneNumber</span>
+        </div>
+        <div class="gv-nav">
+            <input type="button" class="grid-action-link-nav" value="EDIT" onclick='editUser("@item.UserId")' />
+            <input type="button" class="grid-action-link-nav" value="DELETE" onclick='yesNoConfirmation("Home","DeleteUser","@item.UserId","Delete User?")' />
+        </div>
+        <input asp-for="@item.UserId" type="hidden" class="hfUserId" />
+    }
+}

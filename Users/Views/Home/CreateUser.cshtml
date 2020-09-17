@@ -1,0 +1,31 @@
+﻿@model Users.Models.CreateUserModel
+
+<div class="popup-form-medium">
+    <form id="formCreateUser" asp-antiforgery="true">
+        <fieldset>
+            <h1>CREATE USER</h1>
+            <input asp-for="Name" class="text-box" placeholder="Name" />
+            <input asp-for="Surname" class="text-box" placeholder="Surname" />
+            <input asp-for="CellPhoneNumber" class="text-box" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Cell Phone Number" />
+            <div id="messageCreateUser" class="message-label"></div>
+            <nav>
+                <table id="navCreateUser" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="SAVE" class="button" onclick="submitCreateUser()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav-separator"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="CANCEL" class="button" onclick="hidePopupForm()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarCreateUser" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </fieldset>
+    </form>
+</div>

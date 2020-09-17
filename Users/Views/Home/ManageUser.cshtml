@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "USERS";
+
+    ViewBag.GridViewMessage = "Please use the button above to add Users...";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    const createUser = () => {
+
+        fetch("@Url.Action("CreateUser", "Home")").
+            then(handleError).
+            then(htmlDataType).
+            then((data) => {
+                showPopupFormHtml(data)
+            }).
+            catch((error) => {
+                showErrorPopupForm(error)
+            })
+    }
+
+    const validateCreateOrEditUserInput = (messageDiv) => {
+
+        if (!(!!document.querySelector("#Name").value.trim())) {
+            appendErrorMessage(messageDiv, "Name required")
+        }
+
+        if (!(!!document.querySelector("#Surname").value.trim())) {
+            appendErrorMessage(messageDiv, "Surname required")
+        }
+
+        if (!(!!document.querySelector("#CellPhoneNumber").value.trim())) {
+            appendErrorMessage(messageDiv, "Cell Phone Number required")
+        }
+    }
+
+    const submitCreateUser = () => {
+
+        const _messageCreateUser = clearErrorMessageDiv(document.querySelector("#messageCreateUser"))
+
+        validateCreateOrEditUserInput(_messageCreateUser)
+
+        if (!isErrorMessageDivEmpty(_messageCreateUser)) {
+            return
+        }
+
+        fetch("@Url.Action("CreateUser", "Home")", postOptions(serialize(document.querySelector("#formCreateUser"))),
+        toggleButtonProgressBar(document.querySelector("#navCreateUser"), document.querySelector("#progressBarCreateUser"))).
+            then(handleError).
+            then(htmlDataType).
+            then((data) => {
+
+                const _gvRowMessage = document.querySelector("#divUserGrid .grid-view .gv-row-message")
+                if (!!_gvRowMessage) {
+
+                    _gvRowMessage.remove()
+
+                    document.querySelector("#divUserGrid .grid-view").innerHTML = data
+                }
+                else {
+                    document.querySelector("#divUserGrid .grid-view").insertAdjacentHTML("afterbegin", data)
+                }
+
+                hidePopupForm()
+            }).
+            catch((error) => {
+                showErrorPopupForm(error)
+            })
+    }
+
+    const editUser = (userId) => {
+
+        fetch(`@Url.Action("EditUser", "Home")?userId=${userId}`).
+            then(handleError).
+            then(htmlDataType).
+            then((data) => {
+                showPopupFormHtml(data)
+            }).
+            catch((error) => {
+                showErrorPopupForm(error)
+            })
+    }
+
+    const submitEditUser = () => {
+
+        const _messageEditUser = clearErrorMessageDiv(document.querySelector("#messageEditUser"))
+
+        validateCreateOrEditUserInput(_messageEditUser)
+
+        if (!isErrorMessageDivEmpty(_messageEditUser)) {
+            return
+        }
+
+        fetch("@Url.Action("EditUser", "Home")",
+            postOptions(serialize(document.querySelector("#formEditUser"))),
+            toggleButtonProgressBar(document.querySelector("#navEditUser"),
+                                    document.querySelector("#progressBarEditUser"))).
+            then(handleError).
+            then(htmlDataType).
+            then((data) => {
+
+                const _data = document.createElement("div")
+                _data.innerHTML = data
+
+                document.querySelector(`#divUserGrid .grid-view #${CSS.escape(_data.querySelector(".hfUserId").value)}`).innerHTML = _data.innerHTML
+
+                hidePopupForm()
+            }).
+            catch((error) => {
+                showErrorPopupForm(error)
+            })
+    }
+
+    const yesNo = (actionController, actionMethod, actionValue) => {
+
+        fetch(`/${actionController}/${actionMethod}`, postOptions(`actionValue=${actionValue}`), onBeginYesNo()).
+            then(handleError).
+            then(() => {
+
+                document.querySelector(`#divUserGrid .grid-view #${CSS.escape(actionValue)}`).remove()
+
+                if (document.querySelectorAll("#divUserGrid .grid-view .gv-row").length <= 0) {
+
+                    document.querySelector("#divUserGrid .grid-view").innerHTML = gridViewMessage("Please use the button above to add Users...")
+                }
+
+                hidePopupForm()
+            }).
+            catch((error) => {
+                showErrorPopupForm(error)
+            })
+    }
+
+</script>
+
+<div class="div-search-create-buttons">
+    <table class="table-search-create-buttons">
+        <tr>
+            <td>
+                <input type="button" class="button" value="ADD" onclick="createUser()" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divUserGrid">
+    @{ await Html.RenderPartialAsync("UserGrid");}
+</div>

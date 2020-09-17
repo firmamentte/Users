@@ -1,0 +1,579 @@
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--primary-font-family);
+    background-color: var(--primary-color);
+    min-width: 260px;
+}
+
+:root {
+    --primary-color: #000000;
+    --primary-red-color: #9E0000;
+    --primary-font-family: Verdana;
+}
+
+hr {
+    width: 100%;
+    clear: both;
+    border: none;
+    height: 1px;
+    background: #C3C3C3;
+}
+
+br {
+    clear: both;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 0.98em;
+    font-family: var(--primary-font-family);
+    line-height: 24px;
+}
+
+/* Styles page title
+-----------------------------------------------------------*/
+.page-title {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+    .page-title .inner-page-title {
+        width: 92%;
+        margin: auto;
+        text-align: center;
+    }
+
+        .page-title .inner-page-title h1 {
+            color: #FFFFFF;
+        }
+
+/* End
+-----------------------------------------------------------*/
+
+#body {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-top: 30px;
+    padding-bottom: 28px;
+    flex: 1 0 auto;
+}
+
+#inner-body {
+    width: 40%;
+    margin: auto;
+    background-color: #FFFFFF;
+}
+
+footer {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    flex-shrink: 0;
+}
+
+    footer .inner-footer {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+
+        footer .inner-footer .text-label {
+            display: block;
+            font-family: var(--primary-font-family);
+            font-size: 0.54em;
+            font-weight: normal;
+            color: #FFFFFF;
+            margin-top: 28px;
+        }
+
+.field-label {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 0.75em;
+    color: #000000;
+    line-height: 16px;
+}
+
+.button {
+    font-family: var(--primary-font-family);
+    border: 1px solid var(--primary-color);
+    border-radius: 100px;
+    background-color: var(--primary-color);
+    font-size: 0.75em;
+    color: #FFFFFF;
+    padding: 8px 14px 8px 14px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: normal;
+    white-space: normal;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+    .button:hover {
+        background-color: #FFFFFF;
+        color: var(--primary-color);
+    }
+
+.text-box {
+    height: 35px;
+    color: #454545;
+    padding: 0px 10px 0px 10px;
+    font-weight: normal;
+    font-size: 0.75em;
+    font-family: var(--primary-font-family);
+    border: 1px solid #C0C0C0;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.25s linear;
+}
+
+    .text-box:focus {
+        font-weight: 900;
+    }
+
+
+.message-label {
+    color: var(--primary-red-color);
+    font-weight: normal;
+    font-size: 0.75em;
+    font-family: var(--primary-font-family);
+    line-height: 20px;
+}
+
+.message-div {
+    font-weight: normal;
+    font-size: 0.75em;
+    color: #FFFFFF;
+    background-color: var(--primary-red-color);
+    padding: 12px;
+    margin-top: 16px;
+    line-height: 16px;
+}
+
+/* Styles for fieldset controls
+-----------------------------------------------------------*/
+
+.text-box, .message-label, .field-label {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+nav {
+    text-align: center;
+    padding: 0px 0px 12px 0px;
+    margin: 12px 0px 0px 0px;
+}
+
+    nav .nav-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0px 0px;
+        opacity: 1;
+    }
+
+        nav .nav-table.hide-button-progress-bar {
+            display: none;
+            animation: hide-button-progress-bar 0.2s linear;
+            animation-fill-mode: forwards;
+        }
+
+        nav .nav-table .nav-separator {
+            height: 5px;
+        }
+
+.button-progress-bar {
+    margin: auto;
+    font-family: var(--primary-font-family);
+    border: 1px solid var(--primary-color);
+    border-radius: 100px;
+    background-color: var(--primary-color);
+    font-size: 0.75em;
+    color: #FFFFFF;
+    padding: 8px 14px 8px 14px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: normal;
+    white-space: normal;
+    outline: none;
+    display: none;
+    opacity: 0;
+}
+
+    .button-progress-bar.show-button-progress-bar {
+        display: block;
+        animation: show-button-progress-bar 0.2s linear;
+        animation-fill-mode: forwards;
+    }
+
+@keyframes show-button-progress-bar {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-button-progress-bar {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.popup-form-small, .popup-form-medium {
+    box-shadow: 0 0 4px 4px rgba(45, 45, 45, 0.6);
+}
+
+/* Styles for background popup
+-----------------------------------------------------------*/
+
+.background-popup {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000000;
+    z-index: 3;
+    opacity: 0;
+}
+
+    .background-popup.show-popup-background {
+        display: block;
+        animation: show-popup-background 0s linear;
+        animation-fill-mode: forwards;
+    }
+
+    .background-popup.hide-popup-background {
+        display: none;
+        animation: hide-popup-background 0s linear;
+        animation-fill-mode: forwards;
+    }
+
+@keyframes show-popup-background {
+    to {
+        opacity: 0.2;
+    }
+}
+
+@keyframes hide-popup-background {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Styles for popup form small
+-----------------------------------------------------------*/
+.ok-div {
+    cursor: pointer;
+}
+
+.popup-form-small {
+    position: absolute;
+    width: 22%;
+    min-width: 260px;
+    z-index: 5;
+    border: 0px none;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    opacity: 0;
+}
+
+    .popup-form-small.show-popup-form {
+        animation: show-popup-form 0.3s linear;
+        animation-fill-mode: forwards;
+    }
+
+    .popup-form-small.hide-popup-form {
+        animation: hide-popup-form 0.3s linear;
+        animation-fill-mode: forwards;
+    }
+
+    .popup-form-small .ok-yes-no-div {
+        width: 90%;
+        border: none;
+        margin: 20px auto 20px auto;
+    }
+
+    .popup-form-small fieldset {
+        width: 100%;
+        border: none;
+        box-sizing: border-box;
+        padding: 20px 20px 0px 20px;
+    }
+
+        .popup-form-small fieldset h1 {
+            color: var(--primary-color);
+            width: 100%;
+            text-align: center;
+        }
+
+    /* Styles for ok yes no */
+
+    .popup-form-small .ok-yes-no-body {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .popup-form-small .ok-yes-no-icon {
+        flex: 1;
+        margin-right: 10px;
+        width: 70px;
+        height: 70px;
+        border: 1px solid var(--primary-color);
+        border-radius: 10px;
+        background-color: #FFFFFF;
+    }
+
+        .popup-form-small .ok-yes-no-icon p {
+            font-size: 3em;
+            text-align: center;
+            margin-top: 12px;
+            color: var(--primary-color);
+            font-weight: normal;
+        }
+
+    .popup-form-small .ok-yes-no-message {
+        flex: 3;
+    }
+
+/* Styles for popup form medium
+-----------------------------------------------------------*/
+
+.popup-form-medium {
+    position: absolute;
+    width: 100%;
+    min-width: 260px;
+    z-index: 5;
+    background-color: #FFFFFF;
+    opacity: 0;
+}
+
+    .popup-form-medium.show-popup-form {
+        animation: show-popup-form 0.3s linear;
+        animation-fill-mode: forwards;
+    }
+
+    .popup-form-medium.hide-popup-form {
+        animation: hide-popup-form 0.3s linear;
+        animation-fill-mode: forwards;
+    }
+
+    .popup-form-medium fieldset {
+        width: 26%;
+        border: none;
+        margin: 50px auto auto auto;
+    }
+
+        .popup-form-medium fieldset h1 {
+            color: var(--primary-color);
+        }
+
+
+@keyframes show-popup-form {
+
+    from {
+        transform: translateY(60px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes hide-popup-form {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(60px);
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+/* Styles for add button
+-----------------------------------------------------------*/
+
+.div-search-create-buttons {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+    .div-search-create-buttons .table-search-create-buttons {
+        margin: auto;
+        border-collapse: separate;
+        border-spacing: 5px 0px;
+    }
+
+/* Styles for Grid controls
+-----------------------------------------------------------*/
+
+.gv-row-message {
+    padding: 20px 0px 20px 0px;
+    border-top: 1px solid #C3C3C3;
+}
+
+.grid-bottom-line {
+    height: 1px;
+    border-bottom: 1px solid #C3C3C3;
+}
+
+.grid-action-link {
+    font-family: var(--primary-font-family);
+    border: 0px none;
+    background-color: transparent;
+    font-size: 0.84em;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: normal;
+    padding: 0px;
+    margin-right: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.grid-action-link-nav {
+    font-family: var(--primary-font-family);
+    border: 1px solid var(--primary-color);
+    border-radius: 100px;
+    background-color: var(--primary-color);
+    font-size: 0.54em;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: normal;
+    padding: 4px 6px 4px 6px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+    .grid-action-link-nav:hover {
+        background-color: #FFFFFF;
+        color: var(--primary-color);
+    }
+
+.grid-view {
+    width: 100%;
+}
+
+.gv-separator {
+    display: inline-block;
+    font-size: 0.84em;
+    color: #454545;
+}
+
+.gv-label {
+    color: #454545;
+}
+
+.gv-value {
+    color: rgba(45, 45, 45, 0.7);
+}
+
+.gv-value {
+    font-weight: 600;
+}
+
+.gv-label, .gv-value {
+    font-size: 0.75em;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+.gv-row {
+    padding: 20px 0px 20px 0px;
+    border-top: 1px solid #C3C3C3;
+}
+
+
+.gv-row-line, .gv-nav {
+    margin-top: 6px;
+}
+
+.gv-nav {
+    display: block;
+}
+
+/* Styles for media only screen
+-----------------------------------------------------------*/
+@media only screen and (max-width: 1300px) {
+    #inner-body {
+        width: 50%;
+    }
+
+    .popup-form-small {
+        width: 28%;
+    }
+
+    .popup-form-medium fieldset {
+        width: 32%;
+    }
+}
+
+@media only screen and (max-width: 1030px) {
+
+    #inner-body {
+        width: 60%;
+    }
+
+    .popup-form-small {
+        width: 38%;
+    }
+
+    .popup-form-medium fieldset {
+        width: 42%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    #inner-body {
+        width: 70%;
+    }
+
+    .popup-form-small {
+        width: 48%;
+    }
+
+    .popup-form-medium fieldset {
+        width: 52%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    #inner-body {
+        width: 80%;
+    }
+
+    .popup-form-small {
+        width: 58%;
+    }
+
+    .popup-form-medium fieldset {
+        width: 62%;
+    }
+}

@@ -1,0 +1,35 @@
+﻿@model Users.Models.Shared.YesNoModel
+
+<div class="popup-form-small">
+    <fieldset>
+        <div class="ok-yes-no-body">
+            <div class="ok-yes-no-icon">
+                <p>?</p>
+            </div>
+            <div class="ok-yes-no-message">
+                <span class="field-label">
+                    @Html.Raw(Model.YesNoMessage)
+                </span>
+            </div>
+        </div>
+    </fieldset>
+    <nav>
+        <table id="navYesNo" class="nav-table">
+            <tr>
+                <td>
+                    <input type="button" class="button" value="YES"
+                           onclick='yesNo("@Model.ActionController","@Model.ActionMethod","@Model.ActionValue")' />
+                </td>
+            </tr>
+            <tr>
+                <td class="nav-separator"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="NO" class="button" onclick="hidePopupForm()" />
+                </td>
+            </tr>
+        </table>
+        <input id="progressBarYesNo" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+    </nav>
+</div>

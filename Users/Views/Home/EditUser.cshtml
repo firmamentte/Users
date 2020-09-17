@@ -1,0 +1,32 @@
+﻿@model Users.Models.EditUserModel
+
+<div class="popup-form-medium">
+    <form id="formEditUser" asp-antiforgery="true">
+        <fieldset>
+            <h1>EDIT USER</h1>
+            <input asp-for="Name" class="text-box" placeholder="Name" />
+            <input asp-for="Surname" class="text-box" placeholder="Surname" />
+            <input asp-for="CellPhoneNumber" class="text-box" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Cell Phone Number" />
+            <div id="messageEditUser" class="message-label"></div>
+            <input asp-for="UserId" type="hidden" />
+            <nav>
+                <table id="navEditUser" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="SAVE" class="button" onclick="submitEditUser()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav-separator"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="CANCEL" class="button" onclick="hidePopupForm()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarEditUser" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </fieldset>
+    </form>
+</div>
